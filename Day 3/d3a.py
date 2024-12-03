@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec  3 09:37:50 2024
+
+@author: zoë
+"""
+
+import re
+
+
+with open("input", "r") as file:
+    data = file.readlines()
+
+
+product_sum = 0
+for row in data:
+    valid_sequences = re.findall(r"mul\([0-9]+,[0-9]+\)", row)
+    for item in valid_sequences:
+        nums = item.strip(")").strip("mul(").split(",")
+        product = int(nums[0]) * int(nums[1])
+        product_sum += product
+
+print(f"Sum of all products: {product_sum}")
